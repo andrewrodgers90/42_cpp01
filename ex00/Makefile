@@ -6,13 +6,13 @@
 #    By: arodgers <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 18:56:47 by arodgers          #+#    #+#              #
-#    Updated: 2024/07/22 12:47:29 by arodgers         ###   ########.fr        #
+#    Updated: 2024/09/14 18:40:19 by arodgers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C++ = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98
+FLAGS = -Wall -Werror -Wextra -std=c++98 -Wshadow
 
 NAME = brainz 
 
@@ -26,6 +26,9 @@ RM = rm -f
 
 all: $(NAME)
 
+%.o : %.cpp
+	$(C++) $(FLAGS) $< -o $@ -c 
+
 $(NAME): $(OBJS) $(HDR)
 	$(C++) $(FLAGS) $(OBJS) -o $(NAME)
 
@@ -36,4 +39,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
